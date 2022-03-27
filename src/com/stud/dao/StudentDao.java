@@ -11,5 +11,6 @@ import com.stud.dto.Student;
 public interface StudentDao {
 	
 	public ArrayList<Student> getAllStudentDetails() throws Exception;
+	public String addStudentDetail(Student student) throws Exception;
 
 }
