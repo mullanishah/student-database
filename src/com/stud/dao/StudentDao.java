@@ -1,8 +1,8 @@
-package com.dao;
+package com.stud.dao;
 
 import java.util.ArrayList;
 
-import com.dto.Student;
+import com.stud.dto.Student;
 
 /**
  * @author Shahrukh
