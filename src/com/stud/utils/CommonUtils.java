@@ -1,4 +1,4 @@
-package com.utils;
+package com.stud.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;

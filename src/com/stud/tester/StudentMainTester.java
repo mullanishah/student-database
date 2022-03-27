@@ -1,14 +1,14 @@
-package com.tester;
+package com.stud.tester;
 
-import static com.utils.CommonUtils.getScanner;
+import static com.stud.utils.CommonUtils.getScanner;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.dao.StudentDao;
-import com.dao.StudentDaoImpl;
-import com.dto.Student;
+import com.stud.dao.StudentDao;
+import com.stud.dao.StudentDaoImpl;
+import com.stud.dto.Student;
 
 /**
  * @author Shahrukh

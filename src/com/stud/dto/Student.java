@@ -1,7 +1,8 @@
-package com.dto;
+package com.stud.dto;
+
+import static com.stud.utils.CommonUtils.*;
 
 import java.util.Date;
-import static com.utils.CommonUtils.*;
 
 /**
  * @author Shahrukh

@@ -1,4 +1,4 @@
-package com.dao;
+package com.stud.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.dto.Student;
-import com.utils.DBUtils;
+import com.stud.dto.Student;
+import com.stud.utils.DBUtils;
 
 /**
  * @author Shahrukh
