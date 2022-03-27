@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
-
 import com.stud.dto.Student;
 import com.stud.utils.DBUtils;
 
@@ -16,17 +15,18 @@ import com.stud.utils.DBUtils;
 public class StudentDaoImpl implements StudentDao {
 	
 	private Connection conn;
-	private PreparedStatement pstGetStudDetails;
-	
-	private String queryGetStudDetails = "Select * from STUDENT";
+	private PreparedStatement pstGetStudDetails, pstAddStudDetails;
 	
 	public StudentDaoImpl() throws Exception {
 		this.conn = DBUtils.getConnection();
-		this.pstGetStudDetails = conn.prepareStatement(queryGetStudDetails);
+		this.pstGetStudDetails = conn.prepareStatement(QueryHelper.queryGetStudDetails);
+		this.pstAddStudDetails = conn.prepareStatement(QueryHelper.queryAddStudDetails);
 	}
 
 	public void cleanUp() throws Exception {
 		
+		if(null != pstAddStudDetails)
+			pstAddStudDetails.close();
 		if(null != pstGetStudDetails)
 			pstGetStudDetails.close();
 		if(null != conn)
@@ -51,6 +51,23 @@ public class StudentDaoImpl implements StudentDao {
 			}
 		}
 		return studentList;
+	}
+
+	@Override
+	public String addStudentDetail(Student student) throws Exception {
+		
+		pstAddStudDetails.setString(1, student.getFullName());
+		pstAddStudDetails.setString(2, student.getCourseTitle());
+		pstAddStudDetails.setString(3, student.getCurrentSem());				
+		pstAddStudDetails.setString(4, student.getAddress());
+		pstAddStudDetails.setDate(5, new java.sql.Date(student.getBirthDate().getTime()));
+		pstAddStudDetails.setLong(6, student.getContactNum());
+		pstAddStudDetails.setLong(7, student.getEmergencyContact());
+		
+		int updateCount = pstAddStudDetails.executeUpdate();
+		if(updateCount == 1)
+			return QueryHelper.insertionSucceed;
+		return QueryHelper.insertionFailed;
 	}
 
 }

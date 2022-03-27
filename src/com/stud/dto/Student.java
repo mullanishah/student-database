@@ -1,7 +1,6 @@
 package com.stud.dto;
 
 import static com.stud.utils.CommonUtils.*;
-
 import java.util.Date;
 
 /**
@@ -89,8 +88,8 @@ public class Student {
 		this.address = address;
 	}
 
-	public String getBirthDate() {
-		return getSdf().format(birthDate);
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
 	public void setBirthDate(Date birthDate) {
