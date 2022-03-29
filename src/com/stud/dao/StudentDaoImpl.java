@@ -3,6 +3,7 @@ package com.stud.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import com.stud.dto.Student;
@@ -15,16 +16,19 @@ import com.stud.utils.DBUtils;
 public class StudentDaoImpl implements StudentDao {
 	
 	private Connection conn;
-	private PreparedStatement pstGetStudDetails, pstAddStudDetails;
+	private PreparedStatement pstGetStudDetails, pstAddStudDetails, pstRemoveStudDetails;
 	
 	public StudentDaoImpl() throws Exception {
 		this.conn = DBUtils.getConnection();
 		this.pstGetStudDetails = conn.prepareStatement(QueryHelper.queryGetStudDetails);
 		this.pstAddStudDetails = conn.prepareStatement(QueryHelper.queryAddStudDetails);
+		this.pstRemoveStudDetails = conn.prepareStatement(QueryHelper.queryRemoveStudDetails);
 	}
 
 	public void cleanUp() throws Exception {
 		
+		if(null != pstRemoveStudDetails)
+			pstRemoveStudDetails.close();
 		if(null != pstAddStudDetails)
 			pstAddStudDetails.close();
 		if(null != pstGetStudDetails)
@@ -68,6 +72,19 @@ public class StudentDaoImpl implements StudentDao {
 		if(updateCount == 1)
 			return QueryHelper.insertionSucceed;
 		return QueryHelper.insertionFailed;
+	}
+
+	@Override
+	public String removeStudentDetail(long studId, String studName) throws Exception {
+		
+		pstRemoveStudDetails.setLong(1, studId);
+		pstRemoveStudDetails.setString(2, studName);
+		
+		int deleteCount = pstRemoveStudDetails.executeUpdate();
+		if(deleteCount > 0) {
+			return QueryHelper.deletionSucceed;
+		}
+		return QueryHelper.deletionFailed;
 	}
 
 }

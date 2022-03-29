@@ -12,5 +12,5 @@ public interface StudentDao {
 	
 	public ArrayList<Student> getAllStudentDetails() throws Exception;
 	public String addStudentDetail(Student student) throws Exception;
-
+	public String removeStudentDetail(long studId, String studName) throws Exception;
 }
