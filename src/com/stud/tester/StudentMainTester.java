@@ -31,7 +31,7 @@ public class StudentMainTester {
 				System.out.println("===========MENU===========\n"
 						+ "1.Display all students \t\t2.Add new student record\n"
 						+ "3.Update student record \t4.Delete student record\n"
-						+ "5.Exit");
+						+ "5.Search student by Id \t\t6.Exit");
 				System.out.println("Enter your preference: ");
 				choice = scanner.nextInt();
 				switch(choice) {
@@ -48,11 +48,14 @@ public class StudentMainTester {
 					removeStudent();
 					break;
 				case 5:
+					searchStudent();
+					break;
+				case 6:
 					System.exit(0);
 				default:
 					System.out.println("Incorrect choice!");
 				}
-			}while(choice != 5);
+			}while(choice != 6);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -95,7 +98,17 @@ public class StudentMainTester {
 			System.out.println("Updation Status: " + studentDao.updateStudentDetails(id, student));
 		} else {
 			System.out.println("Invalid student id. Please try again later.");
+		}	
+	}
+	
+	private static void searchStudent() throws Exception {
+		System.out.println("Enter student id to be updated: ");
+		long id = scanner.nextLong();
+		Student student = studentDao.searchStudent(id);
+		if(student != null) {
+			System.out.println("Search successful!, details: " + student);
+		} else {
+			System.out.println("Invalid student id. Please validate the provided student id.");
 		}
-		
 	}
 }
