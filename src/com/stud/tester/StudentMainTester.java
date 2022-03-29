@@ -1,8 +1,7 @@
 package com.stud.tester;
 
-import static com.stud.utils.CommonUtils.*;
-import java.util.ArrayList;
-import java.util.List;
+import static com.stud.utils.CommonUtils.getScanner;
+import static com.stud.utils.CommonUtils.getSdf;
 import java.util.Scanner;
 import com.stud.dao.StudentDao;
 import com.stud.dao.StudentDaoImpl;
@@ -14,7 +13,6 @@ import com.stud.dto.Student;
  */
 public class StudentMainTester {
 
-	private static List<Student> studentList = new ArrayList<Student>();
 	private static StudentDao studentDao;
 	private static Scanner scanner;
 	
@@ -62,7 +60,7 @@ public class StudentMainTester {
 	}
 	
 	private static void getStudents() throws Exception {
-		//System.out.println(studentDao.getAllStudentDetails());
+
 		System.out.printf("%-8s %-20s %-16s %-14s %-16s %-16s %-16s %-20s %n", "Id", "Name", "Course", "Semester", "Birthdate", "Contact No", "Emergency No", "Address");
 		System.out.println("====================================================================================================================================================");		
 		for(Student s : studentDao.getAllStudentDetails()) {
@@ -102,6 +100,7 @@ public class StudentMainTester {
 	}
 	
 	private static void searchStudent() throws Exception {
+		
 		System.out.println("Enter student id to be updated: ");
 		long id = scanner.nextLong();
 		Student student = studentDao.searchStudent(id);
