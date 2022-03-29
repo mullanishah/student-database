@@ -41,6 +41,10 @@ public class StudentMainTester {
 				case 2:
 					addStudent();
 					break;
+				case 3: break;
+				case 4:
+					removeStudent();
+					break;
 				case 5:
 					System.exit(0);
 				default:
@@ -50,8 +54,6 @@ public class StudentMainTester {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		getStudents();
-		addStudent();
 	}
 	
 	private static void getStudents() throws Exception {
@@ -71,4 +73,10 @@ public class StudentMainTester {
 		System.out.println("Insertion Status: " + studentDao.addStudentDetail(student));
 	}
 
+	private static void removeStudent() throws Exception {
+		System.out.println("Enter stud id and name to be removed: ");
+		long studId = scanner.nextLong();
+		String name = scanner.next();
+		System.out.println("Deletion status: " + studentDao.removeStudentDetail(studId, name));
+	}
 }
