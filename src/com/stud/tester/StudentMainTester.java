@@ -41,7 +41,9 @@ public class StudentMainTester {
 				case 2:
 					addStudent();
 					break;
-				case 3: break;
+				case 3: 
+					updateStudent();
+					break;
 				case 4:
 					removeStudent();
 					break;
@@ -68,15 +70,32 @@ public class StudentMainTester {
 	}
 	
 	private static void addStudent() throws Exception {
+		
 		System.out.println("Enter student details (Name, Course, Semester, Address, B'day(dd/MM/yyyy), Contact Num, Emergency Num): ");
 		Student student = new Student(scanner.next(), scanner.next(), scanner.next(), scanner.next(), getSdf().parse(scanner.next()), scanner.nextLong(), scanner.nextLong());
 		System.out.println("Insertion Status: " + studentDao.addStudentDetail(student));
 	}
 
 	private static void removeStudent() throws Exception {
+		
 		System.out.println("Enter stud id and name to be removed: ");
 		long studId = scanner.nextLong();
 		String name = scanner.next();
 		System.out.println("Deletion status: " + studentDao.removeStudentDetail(studId, name));
+	}
+	
+	private static void updateStudent() throws Exception{
+		
+		System.out.println("Enter student id to be updated: ");
+		long id = scanner.nextLong();
+		//search if exist
+		if(studentDao.verifyStudent(id) != null) {
+			System.out.println("Enter updated details (Name, Course, Semester, Address, B'day(dd/MM/yyyy), Contact Num, Emergency Num): ");
+			Student student = new Student(scanner.next(), scanner.next(), scanner.next(), scanner.next(), getSdf().parse(scanner.next()), scanner.nextLong(), scanner.nextLong());
+			System.out.println("Updation Status: " + studentDao.updateStudentDetails(id, student));
+		} else {
+			System.out.println("Invalid student id. Please try again later.");
+		}
+		
 	}
 }
